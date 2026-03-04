@@ -1,0 +1,488 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cook Medical Workforce Analysis: Bloomington, IN</title>
+
+  <style>
+    :root{
+      --bg:#ffffff;
+      --panel:#f7f9fc;
+      --card:#ffffff;
+      --text:#0f172a;
+      --muted:#475569;
+      --line:#e2e8f0;
+      --accent:#2563eb;
+      --warn:#b45309;
+      --good:#15803d;
+      --soft:#f3f7ff;
+      --shadow: 0 1px 0 rgba(15,23,42,.03);
+      --radius:16px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      background:linear-gradient(180deg,#ffffff 0%, #fbfcff 55%, #ffffff 100%);
+      color:var(--text);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
+    a{color:var(--accent); text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{max-width:1120px;margin:0 auto;padding:0 18px}
+
+    header{
+      padding:22px 0 14px;
+      border-bottom:1px solid var(--line);
+      background:rgba(255,255,255,.92);
+      position:sticky; top:0; backdrop-filter: blur(6px);
+      z-index:10;
+    }
+    h1{margin:0 0 6px;font-size:26px;letter-spacing:.2px}
+    .sub{color:var(--muted); line-height:1.5; font-size:13.5px}
+
+    .tagrow{display:flex; flex-wrap:wrap; gap:10px; margin-top:10px}
+    .tag{
+      border:1px solid var(--line);
+      color:var(--muted);
+      background:var(--panel);
+      padding:6px 10px; border-radius:999px; font-size:12px;
+    }
+
+    .nav{
+      margin-top:12px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+    }
+    .nav a{
+      font-size:12.5px;
+      color:var(--muted);
+      border:1px solid var(--line);
+      background:#fff;
+      padding:6px 10px;
+      border-radius:999px;
+    }
+    .nav a:hover{border-color:rgba(37,99,235,.35); color:var(--text); text-decoration:none}
+
+    main{padding:20px 0 44px}
+    .grid{display:grid; grid-template-columns: repeat(12, 1fr); gap:14px}
+
+    .card{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:16px;
+      box-shadow: var(--shadow);
+    }
+    .kpi{grid-column:span 3}
+    .kpi h3{margin:0 0 8px; font-size:12px; color:var(--muted); font-weight:650; letter-spacing:.2px}
+    .kpi .val{font-size:22px; font-weight:800}
+    .kpi .note{margin-top:6px; font-size:12px; color:var(--muted); line-height:1.35}
+
+    .half{grid-column:span 6}
+    .full{grid-column:span 12}
+
+    h2{margin:0 0 10px; font-size:15px; letter-spacing:.2px}
+    p{margin:0; color:var(--muted); line-height:1.55; font-size:13.5px}
+    ul{margin:10px 0 0 18px; color:var(--muted); line-height:1.55; font-size:13.5px}
+    li{margin:6px 0}
+    .hr{height:1px;background:var(--line); margin:10px 0 14px}
+
+    .callout{
+      border-left:4px solid var(--accent);
+      padding:10px 12px;
+      background: var(--soft);
+      border-radius:12px;
+      color:var(--text);
+    }
+    .callout strong{color:var(--text)}
+
+    .cols{display:grid; grid-template-columns: 1fr 1fr; gap:14px; margin-top:10px}
+    .mini{
+      background:var(--panel);
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:14px;
+    }
+    .mini h3{margin:0 0 8px; font-size:13px; color:var(--text)}
+
+    .badge{
+      display:inline-block;
+      font-size:12px;
+      padding:4px 8px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:#ffffff;
+      color:var(--muted);
+      margin-right:8px;
+      margin-top:8px;
+    }
+    .badge.good{border-color:#bbf7d0; background:#f0fdf4; color:var(--good)}
+    .badge.warn{border-color:#fed7aa; background:#fff7ed; color:var(--warn)}
+
+    table{width:100%; border-collapse:collapse; font-size:13px}
+    th, td{padding:10px 10px; border-bottom:1px solid var(--line); vertical-align:top}
+    th{color:var(--muted); text-align:left; font-weight:700; background:#fbfdff}
+    .small{font-size:12px; color:var(--muted)}
+    .right{text-align:right}
+
+    /* Power BI embed */
+    .embedWrap{
+      border:1px solid var(--line);
+      border-radius:14px;
+      overflow:hidden;
+      background:#fff;
+    }
+    .ratio{
+      position:relative;
+      width:100%;
+      padding-top:56.25%; /* 16:9 */
+      background:#fff;
+    }
+    .ratio iframe{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      border:0;
+    }
+    .embedBar{
+      display:flex;
+      gap:10px;
+      justify-content:space-between;
+      align-items:center;
+      padding:10px 12px;
+      background:var(--panel);
+      border-top:1px solid var(--line);
+      flex-wrap:wrap;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-size:12.5px;
+      padding:7px 10px;
+      border-radius:10px;
+      border:1px solid var(--line);
+      background:#fff;
+      color:var(--text);
+      cursor:pointer;
+      user-select:none;
+    }
+    .btn:hover{border-color:rgba(37,99,235,.35)}
+    .btn a{color:inherit; text-decoration:none}
+
+    .fallback{
+      display:none;
+      padding:12px;
+      background:#fff7ed;
+      border-top:1px solid #fed7aa;
+      color:#7c2d12;
+      font-size:12.5px;
+      line-height:1.45;
+    }
+    .fallback code{
+      background:rgba(124,45,18,.06);
+      border:1px solid rgba(124,45,18,.15);
+    }
+
+    footer{
+      padding:22px 0 34px;
+      border-top:1px solid var(--line);
+      background:#ffffff;
+    }
+    .src ol{margin:10px 0 0 18px; color:var(--muted); line-height:1.65; font-size:13px}
+
+    @media (max-width:980px){
+      .kpi{grid-column:span 6}
+      .half{grid-column:span 12}
+      .cols{grid-template-columns:1fr}
+      header{position:relative}
+    }
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="wrap">
+    <h1>Bloomington, IN: Labor Market Diagnosis (Cook Medical Workforce Analysis)</h1>
+
+    <div class="sub">
+      <strong>Objective:</strong> provide actionable insight on labor availability, wage competitiveness, and workforce risks for minimum-skills / hourly manufacturing roles (public data only).
+      <br/>
+      <strong>Labor market definition:</strong> Bloomington, IN MSA (Monroe + Owen Counties) for external labor market conditions (wages, unemployment, housing). Includes Bloomington, IN; Ellettsville, IN; Spencer, IN.
+      <br/>
+      <strong>Timing note:</strong> This diagnosis intentionally combines <em>structural</em> (OEWS wages, housing) + <em>cyclical</em> (unemployment) + <em>near-term</em> (postings) indicators; each section lists its data period.
+    </div>
+
+    <div class="tagrow">
+      <span class="tag">Prepared for Stephanie L.</span>
+      <span class="tag">OEWS wage year: May 2024</span>
+      <span class="tag">Unemployment window: Oct 2024-Sep 2025</span>
+      <span class="tag">ACS housing estimates: 2020-2024</span>
+      <span class="tag">Postings snapshot: Feb 20, 2026</span>
+    </div>
+
+    <div class="nav" aria-label="Page navigation">
+      <a href="#dashboard">Dashboard</a>
+      <a href="#summary">Executive Summary</a>
+      <a href="#benchmarks">Role Basket</a>
+      <a href="#housing">Housing</a>
+      <a href="#postings">Postings</a>
+      <a href="#pestle">PESTLE</a>
+      <a href="#recs">Recommendations</a>
+      <a href="#sources">Sources</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="wrap grid">
+
+    <!-- POWERBI DASHBOARD (TOP) -->
+    <div class="card full" id="dashboard">
+      <h2>Power BI Dashboard (Bloomington MSA)</h2>
+      <p class="small">
+        Interactive dashboard for executive review. Use slicers to inspect wages, supply, hiring pressure, housing affordability, and employer competition.
+      </p>
+      <div class="hr"></div>
+
+      <div class="embedWrap">
+        <div class="ratio">
+          <iframe
+            id="pbiFrame"
+            title="client_dashboard_1_cook_medical"
+            src="https://app.powerbi.com/view?r=eyJrIjoiNjQ1ZGZjODMtYzBiMC00ZmY2LWI0NDUtYWVkODljNjFlMTJkIiwidCI6IjExMTNiZTM0LWFlZDEtNGQwMC1hYjRiLWNkZDAyNTEwYmU5MSIsImMiOjN9"
+            frameborder="0"
+            allowfullscreen="true">
+          </iframe>
+        </div>
+
+        <div class="embedBar">
+          <span class="small">
+            If the dashboard doesn’t load, your browser/network may be blocking third-party iframes. Use “Open in new tab.”
+          </span>
+
+          <span style="display:flex; gap:10px; flex-wrap:wrap;">
+            <span class="btn" id="btnFullscreen" title="Request fullscreen for the embed">Fullscreen</span>
+            <span class="btn">
+              <a
+                href="https://app.powerbi.com/view?r=eyJrIjoiNjQ1ZGZjODMtYzBiMC00ZmY2LWI0NDUtYWVkODljNjFlMTJkIiwidCI6IjExMTNiZTM0LWFlZDEtNGQwMC1hYjRiLWNkZDAyNTEwYmU5MSIsImMiOjN9"
+                target="_blank"
+                rel="noopener"
+                title="Open the report in a new tab">
+                Open in new tab
+              </a>
+            </span>
+            <span class="btn"><a href="#sources">Method & sources</a></span>
+          </span>
+        </div>
+
+        <div class="fallback" id="embedFallback">
+          <strong>Embed blocked.</strong> If you’re viewing this page inside a restricted environment, the Power BI iframe may be disabled.
+          Use <a
+            href="https://app.powerbi.com/view?r=eyJrIjoiNjQ1ZGZjODMtYzBiMC00ZmY2LWI0NDUtYWVkODljNjFlMTJkIiwidCI6IjExMTNiZTM0LWFlZDEtNGQwMC1hYjRiLWNkZDAyNTEwYmU5MSIsImMiOjN9"
+            target="_blank"
+            rel="noopener"
+          >this direct report link</a>.
+        </div>
+      </div>
+    </div>
+
+    <!-- TOP KPI CARDS -->
+    <div class="card kpi">
+      <h3>Unemployment (12-mo avg)</h3>
+      <div class="val">3.56%</div>
+      <div class="note">Oct 2024-Sep 2025. Tight labor → higher recruiting friction</div>
+    </div>
+
+    <div class="card kpi">
+      <h3>Production workforce depth</h3>
+      <div class="val">7,020</div>
+      <div class="note">Production occupations employment (May 2024 OEWS)</div>
+    </div>
+
+    <div class="card kpi">
+      <h3>Assembler concentration (LQ)</h3>
+      <div class="val">3.97</div>
+      <div class="note">~4× national concentration → skills cluster + structural competition</div>
+    </div>
+
+    <div class="card kpi">
+      <h3>Rent affordability wage</h3>
+      <div class="val">$22.94/hr</div>
+      <div class="note">30% rule; single FT earner; ACS 2020-2024</div>
+    </div>
+
+    <!-- EXEC SUMMARY -->
+    <div class="card full" id="summary">
+      <h2>Executive Summary (What the market is doing to Cook)</h2>
+      <div class="callout">
+        <p>
+          Bloomington is a <strong>tight labor market</strong> operating inside a <strong>manufacturing labor cluster</strong>.
+          The talent base exists (high assembler concentration), but “available” labor is limited (12-month unemployment average ~3.56%).
+          A postings snapshot (Feb 20, 2026; 20 miles; within 30 days) shows broad competition for production and logistics-adjacent roles raising the importance of
+          <strong>offer competitiveness</strong>, <strong>speed-to-hire</strong>, and <strong>retention</strong>.
+        </p>
+      </div>
+
+      <div class="hr"></div>
+      <span class="badge warn"><strong>Risk:</strong> low unemployment → time-to-fill</span>
+      <span class="badge warn"><strong>Risk:</strong> warehouse/forklift demand competes for the same workforce</span>
+      <span class="badge warn"><strong>Risk:</strong> maintenance & machining are bottleneck roles</span>
+      <span class="badge good"><strong>Opportunity:</strong> internal ladders (assembler → inspection/QA)</span>
+
+      <ul>
+        <li><strong>Primary battleground:</strong> $18-$22/hour roles (assemblers, movers, warehouse/forklift)</li>
+        <li><strong>Structural advantage:</strong> skills-aligned labor pool (high assembler and inspection concentration)</li>
+        <li><strong>Structural constraint:</strong> tight labor + high employer competition reduces “ready supply” even with a sizable workforce base</li>
+      </ul>
+    </div>
+
+    <!-- ROLE BASKET -->
+    <div class="card full" id="benchmarks">
+      <h2>Role-Basket Benchmarks (Bloomington MSA, May 2024 OEWS)</h2>
+      <p class="small">
+        The interactive version of these benchmarks is in Power BI. Keep this section as your printable / exportable narrative layer.
+      </p>
+      <div class="hr"></div>
+      <p class="small"><em>Paste your existing OEWS table here (unchanged) if you want it visible on-page.</em></p>
+    </div>
+
+    <!-- HOUSING -->
+    <div class="card full" id="housing">
+      <h2>Housing Band Insights (Retention Friction)</h2>
+      <p class="small">
+        Housing acts like a “shadow wage.” If rent rises, hourly wage expectations and churn pressure typically follow.
+        Data: U.S. Census Bureau ACS 2020-2024 estimates.
+      </p>
+      <div class="hr"></div>
+      <p class="small"><em>Keep your existing housing methodology + table here if you want the static explanation on-page.</em></p>
+    </div>
+
+    <!-- POSTINGS -->
+    <div class="card full" id="postings">
+      <h2>Active Hiring Pressure (Postings snapshot)</h2>
+      <p class="small">
+        Snapshot date: <strong>Feb 20, 2026</strong>. Radius: <strong>20 miles</strong>. Window: listings within <strong>30 days</strong>.
+        Postings are directional (not hires) but provide a live indicator of competitive recruiting activity.
+      </p>
+      <div class="hr"></div>
+      <p class="small"><em>Employer leaderboard + concentration metrics are in Power BI.</em></p>
+    </div>
+
+    <!-- PESTLE -->
+    <div class="card full" id="pestle">
+      <h2>PESTLE Diagnosis (Bloomington)</h2>
+      <p class="small"><em>Keep your existing PESTLE blocks here if desired; Power BI contains the indicator drilldowns.</em></p>
+    </div>
+
+    <!-- RECOMMENDATIONS -->
+    <div class="card full" id="recs">
+      <h2>Recruitment & Retention Recommendations (Bloomington)</h2>
+      <ul>
+        <li><strong>Compete on speed:</strong> reduce time-to-offer for entry roles; consider same-day conditional offers.</li>
+        <li><strong>Win the $18-$22 band:</strong> align entry pay to assembler/forklift benchmarks; if below, offset via total rewards + predictable hours.</li>
+        <li><strong>Build a visible ladder:</strong> formalize (assembler → inspector/QA → lead → supervisor) and communicate it at hiring.</li>
+        <li><strong>Protect bottlenecks:</strong> maintenance/machining require proactive retention and pipelines (small base, high impact).</li>
+        <li><strong>Address housing friction:</strong> consider shift premiums, transport support, or retention bonuses to reduce churn pressure.</li>
+      </ul>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="wrap src">
+    <h2>Sources</h2>
+    <p class="small">
+      We integrated Bureau of Labor Statistics (BLS) unemployment data, BLS Occupational Employment and Wage Statistics (OEWS) wages, American Community Survey (ACS) housing data by the U.S. Census Bureau, and a team-collected job postings snapshot (Feb 20, 2026). Each metric above includes a defined period. Links below support our verification.
+    </p>
+
+    <ol>
+      <li>
+        <strong>BLS: Bloomington, IN MSA “Economy at a Glance” (unemployment series)</strong><br/>
+        <a href="https://www.bls.gov/eag/eag.in_bloomington_msa.htm" target="_blank" rel="noopener">
+          https://www.bls.gov/eag/eag.in_bloomington_msa.htm
+        </a><br/>
+        <span class="small">Used for: 12-month unemployment average (Oct 2024-Sep 2025)</span>
+      </li>
+
+      <li>
+        <strong>BLS: Occupational Employment & Wages in Bloomington, IN (May 2024 OEWS)</strong><br/>
+        <a href="https://www.bls.gov/regions/midwest/news-release/occupationalemploymentandwages_bloomingtonin.htm" target="_blank" rel="noopener">
+          https://www.bls.gov/regions/midwest/news-release/occupationalemploymentandwages_bloomingtonin.htm
+        </a>
+      </li>
+
+      <li>
+        <strong>BLS: Occupational Employment & Wages in Bloomington, IN (May 2021 OEWS metro release)</strong><br/>
+        <a href="https://www.bls.gov/regions/midwest/news-release/2022/occupationalemploymentandwages_bloomingtonin_20220901.htm" target="_blank" rel="noopener">
+          https://www.bls.gov/regions/midwest/news-release/2022/occupationalemploymentandwages_bloomingtonin_20220901.htm
+        </a><br/>
+        <span class="small">Used for: wage growth anchor comparisons (May 2021 → May 2024)</span>
+      </li>
+
+      <li>
+        <strong>U.S. Census QuickFacts: Monroe County, Indiana (ACS 2020-2024 5-year estimates)</strong><br/>
+        <a href="https://www.census.gov/quickfacts/fact/table/monroecountyindiana/PST045224" target="_blank" rel="noopener">
+          https://www.census.gov/quickfacts/fact/table/monroecountyindiana/PST045224
+        </a><br/>
+        <span class="small">Used for: median rent, owner costs with mortgage, home value, household income, and affordability scenarios</span>
+      </li>
+
+      <li>
+        <strong>Job postings snapshot (20-mile radius; listings within 30 days; captured Feb 20, 2026)</strong><br/>
+        Example postings:
+        <ul>
+          <li><a href="https://www.ziprecruiter.com/c/Retail-Odyssey/Job/Product-Assembler/-in-Bloomington,IN?jid=2fdca206f4513727&trk=bingjobs&exp_similar_jobs_carousel_seo_bucket_test=Control" target="_blank" rel="noopener">
+            ZipRecruiter: Product Assembler (Bloomington)
+          </a></li>
+          <li><a href="https://www.glassdoor.com/job-listing/production-assistant-printpack-JV_IC1144789_KO0,20_KE21,30.htm?jl=1010032060291&cs=1_f94108ae&s=351&t=FJ&pos=101&src=GD_JOB_AD&guid=0000019c8bcf419d995c4a518baf2da0&jobListingId=1010032060291&ao=1136043&vt=w&jrtk=5-yul1-0-1ji5sugo8l52u806-5a21222f1cc4cc74&cb=1771872142238&ctt=1771872150844" target="_blank" rel="noopener">
+            Glassdoor: Production Assistant (Bloomington)
+          </a></li>
+        </ul>
+        <span class="small">We acknowledge job posting counts and pay ranges may change daily; this page reflects the recorded snapshot.</span>
+      </li>
+      
+      <li>
+        <strong>JP Morgan Chase: Community Development (2025 inflation impact on renters)</strong><br/>
+        <a href="https://www.jpmorganchase.com/institute/all-topics/community-development/inflation-impact-on-renters" target="_blank" rel="noopener">
+          https://www.jpmorganchase.com/institute/all-topics/community-development/inflation-impact-on-renters
+        </a><br/>
+        <span class="small">Used for: housing insights, hourly wage expectations and churn pressure</span>
+      </li>
+    </ol>
+
+<script>
+  (function(){
+    const frame = document.getElementById('pbiFrame');
+    const fallback = document.getElementById('embedFallback');
+    const btn = document.getElementById('btnFullscreen');
+
+    // Fullscreen (best-effort; may be blocked by browser policies)
+    btn.addEventListener('click', function(){
+      if (!frame) return;
+      const el = frame;
+      const req = el.requestFullscreen || el.webkitRequestFullscreen || el.msRequestFullscreen;
+      if (req) req.call(el);
+    });
+
+    // If iframe errors out or is blocked, show fallback
+    // Note: Many browsers won't fire "error" reliably for iframes; we use a timer heuristic.
+    let loaded = false;
+    frame.addEventListener('load', function(){ loaded = true; });
+
+    setTimeout(function(){
+      if (!loaded){
+        fallback.style.display = "block";
+      }
+    }, 3500);
+  })();
+</script>
+
+</body>
+</html>
