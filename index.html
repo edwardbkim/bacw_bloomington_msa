@@ -342,42 +342,259 @@
       </ul>
     </div>
 
-    <!-- ROLE BASKET -->
-    <div class="card full" id="benchmarks">
-      <h2>Role-Basket Benchmarks (Bloomington MSA, May 2024 OEWS)</h2>
+        <!-- WAGE GROWTH TRENDS -->
+    <div class="card half">
+      <h2>Wage Growth Trends (Anchor comparison)</h2>
       <p class="small">
-        The interactive version of these benchmarks is in Power BI. Keep this section as your printable / exportable narrative layer.
+        This panel compares May 2021 vs May 2024 Bloomington metro OEWS release values for consistent anchor points.
+        We interpret these values as directional evidence of changing pay expectations (not a real-time wage index).
       </p>
       <div class="hr"></div>
-      <p class="small"><em>Paste your existing OEWS table here (unchanged) if you want it visible on-page.</em></p>
+      <table>
+        <thead>
+          <tr>
+            <th>Benchmark</th>
+            <th class="right">May 2021</th>
+            <th class="right">May 2024</th>
+            <th class="right">% Change</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>All occupations (mean)</strong></td>
+            <td class="right">$25.00</td>
+            <td class="right">$28.38</td>
+            <td class="right"><strong>+13.5%</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Production occupations (mean)</strong></td>
+            <td class="right">$21.13</td>
+            <td class="right">$23.00</td>
+            <td class="right"><strong>+8.9%</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Misc. assemblers (mean)</strong></td>
+            <td class="right">$16.33</td>
+            <td class="right">$18.99</td>
+            <td class="right"><strong>+16.3%</strong></td>
+          </tr>
+          <tr>
+            <td><strong>First-line production supervisors (mean)</strong></td>
+            <td class="right">$32.29</td>
+            <td class="right">$38.02</td>
+            <td class="right"><strong>+17.7%</strong></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="hr"></div>
+      <ul>
+        <li><strong>Core signal:</strong> entry-level production expectations rose materially (assembler mean +16% over 3 years)</li>
+        <li><strong>Leadership signal:</strong> supervisor wage growth (+18%) implies providing ladder consistency matters as entry wages move</li>
+      </ul>
+      <p class="small">
+        OEWS methodology and SOC structures can change over time; these comparisons use OEWS metro releases for consistency.
+      </p>
     </div>
 
-    <!-- HOUSING -->
-    <div class="card full" id="housing">
+    <!-- HOUSING BAND INSIGHTS -->
+    <div class="card half">
       <h2>Housing Band Insights (Retention Friction)</h2>
       <p class="small">
-        Housing acts like a “shadow wage.” If rent rises, hourly wage expectations and churn pressure typically follow.
-        Data: U.S. Census Bureau ACS 2020-2024 estimates.
+        Housing acts like a “shadow wage.” If rent rises, hourly wage expectations and churn pressure typically follow (JP Morgan 2025).
+        <br/>
+        Data: U.S. Census Bureau Monroe County ACS 2020-2024 5-year estimates. “Affordability wage” converts monthly housing cost into an hourly wage benchmark.
       </p>
       <div class="hr"></div>
-      <p class="small"><em>Keep your existing housing methodology + table here if you want the static explanation on-page.</em></p>
+
+      <div class="mini">
+        <h3>Affordability Method (transparent)</h3>
+        <p class="small">
+          Assumptions: <strong>40 hrs/week</strong>, <strong>52 weeks/year</strong> (= 2,080 hrs), housing share rule (cost of living is 30% or 35% of gross income)
+          <br/>
+          Hourly wage = (Monthly housing cost × 12) ÷ (Rule × 2,080). Dual income divides required income across two full-time earners.
+        </p>
+      </div>
+
+      <div class="hr"></div>
+      <table>
+        <thead>
+          <tr>
+            <th>Scenario</th>
+            <th class="right">Rent Wage</th>
+            <th class="right">Mortgage Wage</th>
+            <th>Interpretation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>30% Rule (single earner)</strong></td>
+            <td class="right">$22.94/hr</td>
+            <td class="right">$29.46/hr</td>
+            <td>Conservative affordability benchmark</td>
+          </tr>
+          <tr>
+            <td><strong>35% Rule (single earner)</strong></td>
+            <td class="right">$19.66/hr</td>
+            <td class="right">$25.25/hr</td>
+            <td>Less conservative; reflects higher burden tolerance</td>
+          </tr>
+          <tr>
+            <td><strong>Dual income (two earners)</strong></td>
+            <td class="right">$11.47/hr each</td>
+            <td class="right">$14.73/hr each</td>
+            <td>Shows why household composition changes “affordability” reality</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="hr"></div>
+      <ul>
+        <li><strong>Key takeaway:</strong> assembler median (~$17.69/hr) is below both the 30% (~$22.94) and 35% (~$19.66) rent thresholds and meaningfully below the mortgage thresholds</li>
+      </ul>
+      <ul>
+        <li><strong>Retention Implication:</strong> if Cook hires at the low end of the $18–$22 band, housing can amplify churn pressure unless total rewards (benefits, attendance bonuses, reliable hours, etc.) close the gap</li>
+      </ul>
     </div>
 
-    <!-- POSTINGS -->
-    <div class="card full" id="postings">
+    <!-- ACTIVE DEMAND: JOB POSTINGS -->
+    <div class="card full">
       <h2>Active Hiring Pressure (Postings snapshot)</h2>
       <p class="small">
-        Snapshot date: <strong>Feb 20, 2026</strong>. Radius: <strong>20 miles</strong>. Window: listings within <strong>30 days</strong>.
-        Postings are directional (not hires) but provide a live indicator of competitive recruiting activity.
+        Snapshot date: <strong>Feb 20, 2026</strong>. Radius: <strong>20 miles</strong>. Window: postings listed within <strong>30 days</strong>.
+        We acknowledge postings aren't hires, but they're a live indicator of demand intensity and competitive recruiting activity.
       </p>
+
       <div class="hr"></div>
-      <p class="small"><em>Employer leaderboard + concentration metrics are in Power BI.</em></p>
+      <table>
+        <thead>
+          <tr>
+            <th>Keyword</th>
+            <th class="right">Posting Count</th>
+            <th>Observed Pay Range</th>
+            <th>Repeated Employers (examples)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>production worker</strong></td>
+            <td class="right">51</td>
+            <td>$20–$28</td>
+            <td>Amcor, Kelly Services, Phoenix Closures, FastSigns, …</td>
+          </tr>
+          <tr>
+            <td><strong>warehouse associate</strong></td>
+            <td class="right">47</td>
+            <td>$17–$22</td>
+            <td>humano, CJ Logistics, Sysco, Amazon, Walmart, …</td>
+          </tr>
+          <tr>
+            <td><strong>forklift</strong></td>
+            <td class="right">34</td>
+            <td>$18–$22</td>
+            <td>Lineage Logistics, Staffmark, DHL, Costco, …</td>
+          </tr>
+          <tr>
+            <td><strong>assembler</strong></td>
+            <td class="right">27</td>
+            <td>$16–$22</td>
+            <td>Express Employment Professionals, Qual…, …</td>
+          </tr>
+          <tr>
+            <td><strong>machine operator</strong></td>
+            <td class="right">14</td>
+            <td>$20–$22</td>
+            <td>Printpack, Carlisle Brake &amp; Friction, Loram, …</td>
+          </tr>
+          <tr>
+            <td><strong>quality inspector</strong></td>
+            <td class="right">11</td>
+            <td>$20–$32</td>
+            <td>Aerotek, Pro QC International, Dalsin Industries</td>
+          </tr>
+          <tr>
+            <td><strong>packager</strong></td>
+            <td class="right">3</td>
+            <td>$17–$24</td>
+            <td>Walmart, Sam’s Club</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="hr"></div>
+      <div class="cols">
+        <div class="mini">
+          <h3>Posting examples (traceable)</h3>
+          <ul>
+            <li><a href="https://www.ziprecruiter.com/c/Retail-Odyssey/Job/Product-Assembler/-in-Bloomington,IN?jid=2fdca206f4513727&trk=bingjobs&exp_similar_jobs_carousel_seo_bucket_test=Control" target="_blank" rel="noopener">ZipRecruiter: Product Assembler (Bloomington)</a></li>
+            <li><a href="https://www.glassdoor.com/job-listing/production-assistant-printpack-JV_IC1144789_KO0,20_KE21,30.htm?jl=1010032060291&cs=1_f94108ae&s=351&t=FJ&pos=101&src=GD_JOB_AD&guid=0000019c8bcf419d995c4a518baf2da0&jobListingId=1010032060291&ao=1136043&vt=w&jrtk=5-yul1-0-1ji5sugo8l52u806-5a21222f1cc4cc74&cb=1771872142238&ctt=1771872150844" target="_blank" rel="noopener">Glassdoor: Production Assistant (Bloomington)</a></li>
+          </ul>
+          <p class="small">These examples show market-facing role titles and pay signals competing for similar talent.</p>
+        </div>
+        <div class="mini">
+          <h3>Demand pressure flags (diagnosis)</h3>
+          <ul>
+            <li><strong>Logistics demand is high</strong> (warehouse + forklift). Cook competes for the same reliability traits and wage band.</li>
+            <li><strong>Production postings are broad</strong> (51), reinforcing scarcity in a low-unemployment market</li>
+            <li><strong>Quality pay dispersion</strong> ($20–$32) suggests segmentation by experience/certs: an internal ladder opportunity</li>
+          </ul>
+        </div>
+      </div>
     </div>
 
     <!-- PESTLE -->
-    <div class="card full" id="pestle">
+    <div class="card full">
       <h2>PESTLE Diagnosis (Bloomington)</h2>
-      <p class="small"><em>Keep your existing PESTLE blocks here if desired; Power BI contains the indicator drilldowns.</em></p>
+      <div class="cols">
+
+        <div class="mini">
+          <h3>Political / Legal</h3>
+          <ul>
+            <li>Indiana’s labor relations baseline (Right-to-Work) shapes environment and expectations</li>
+            <li>Watch: incentives and development policies that accelerate competitor expansions (labor demand shocks)</li>
+          </ul>
+        </div>
+
+        <div class="mini">
+          <h3>Economic</h3>
+          <ul>
+            <li><strong>Tight labor</strong> (~3.56% avg unemployment) increases vacancy cost; retention ROI is unusually high</li>
+            <li><strong>Wage growth</strong> in assembler/supervisor benchmarks indicates rising expectations and compression risk</li>
+          </ul>
+        </div>
+
+        <div class="mini">
+          <h3>Social / Demographic</h3>
+          <ul>
+            <li>Bloomington is an institution-heavy market whcih shapes benefit expectations and job-switching patterns</li>
+            <li>Watch: labor force participation and “stable workforce” availability (beyond student seasonality)</li>
+          </ul>
+        </div>
+
+        <div class="mini">
+          <h3>Technological</h3>
+          <ul>
+            <li>Opportunity: internal ladders + rapid training for entry roles; move talent into inspection/QA and lead roles</li>
+            <li>Watch: competitor automation investments shifting demand toward maintenance/tech</li>
+          </ul>
+        </div>
+
+        <div class="mini">
+          <h3>Environmental</h3>
+          <ul>
+            <li>Commute reliability affects hourly attendance; labor shed resilience matters for shift staffing</li>
+            <li>Watch: seasonal disruption and commuting radius constraints</li>
+          </ul>
+        </div>
+
+        <div class="mini">
+          <h3>Institutional / Ecosystem</h3>
+          <ul>
+            <li>Skills-aligned manufacturing cluster supports hiring but heightens competition</li>
+            <li>Watch: temp agency activity and logistics hiring waves (major competitor channel for hourly labor)</li>
+          </ul>
+        </div>
+
+      </div>
     </div>
 
     <!-- RECOMMENDATIONS -->
