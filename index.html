@@ -679,6 +679,11 @@
     const frame = document.getElementById('pbiFrame');
     const fallback = document.getElementById('embedFallback');
     const btn = document.getElementById('btnFullscreen');
+    const btnSources = document.getElementById('btnSources');
+    btnSources.addEventListener('click', function(){
+      const target = document.getElementById('sources');
+      if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
 
     // Fullscreen (best-effort; may be blocked by browser policies)
     btn.addEventListener('click', function(){
