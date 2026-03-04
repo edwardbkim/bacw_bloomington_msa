@@ -229,7 +229,7 @@
     <div class="nav" aria-label="Page navigation">
       <a href="#dashboard">Dashboard</a>
       <a href="#summary">Executive Summary</a>
-      <a href="#benchmarks">Role Basket</a>
+      <a href="#benchmarks">Wage Trends</a>
       <a href="#housing">Housing</a>
       <a href="#postings">Postings</a>
       <a href="#pestle">PESTLE</a>
@@ -679,11 +679,6 @@
     const frame = document.getElementById('pbiFrame');
     const fallback = document.getElementById('embedFallback');
     const btn = document.getElementById('btnFullscreen');
-    const btnSources = document.getElementById('btnSources');
-    btnSources.addEventListener('click', function(){
-      const target = document.getElementById('sources');
-      if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
-    });
 
     // Fullscreen (best-effort; may be blocked by browser policies)
     btn.addEventListener('click', function(){
